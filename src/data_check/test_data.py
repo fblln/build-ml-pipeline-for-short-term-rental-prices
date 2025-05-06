@@ -63,3 +63,19 @@ def test_similar_neigh_distrib(data: pd.DataFrame, ref_data: pd.DataFrame, kl_th
 ########################################################
 # Implement here test_row_count and test_price_range   #
 ########################################################
+
+def test_row_count(data: pd.DataFrame):
+    """
+    Test to validate the row count of a dataset.
+    This function checks whether the number of rows in the given dataset
+    falls within an acceptable range. The dataset is expected to have
+    more than 15,000 rows and less than 1,000,000 rows.
+    """
+
+    assert 15000 < data.shape[0] < 1000000
+
+def test_price_range(data: pd.DataFrame, min_price: int, max_price: int):
+    """
+    Validates that all rental prices in the provided dataset fall within the specified range.
+    """
+    assert data['price'].between(min_price, max_price).all()
